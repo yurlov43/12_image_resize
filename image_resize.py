@@ -11,10 +11,10 @@ def parser_arguments():
         help='The path to the image')
     parser.add_argument(
         '-w', '--width', type=int,
-        help='Image width')
+        help='New image width')
     parser.add_argument(
         '-H', '--height', type=int,
-        help='Image height')
+        help='New image height')
     parser.add_argument(
         '-s', '--scale', type=float,
         help='Image change scale')
