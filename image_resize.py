@@ -32,6 +32,22 @@ def get_path_to_result(path_to_original, new_width, new_height):
     return path_to_result
 
 
+def get_new_sides(
+        image_width,
+        image_height,
+        aspect_ratio,
+        scale,
+        new_width,
+        new_height):
+    if scale:
+        new_width = int(image_width*scale)
+        new_height = int(image_height*scale)
+    elif new_width:
+        new_height = int(new_width/aspect_ratio)
+    elif new_height:
+        new_width = int(new_height*aspect_ratio)
+    return new_width, new_height
+
 if __name__ == '__main__':
     parser = get_parser()
     arguments = parser.parse_args()
@@ -45,16 +61,17 @@ if __name__ == '__main__':
     image = Image.open(path_to_original)
     image_width, image_height = image.size
     aspect_ratio = round(image_width/image_height, 2)
-    if scale:
-        new_width = int(image_width*scale)
-        new_height = int(image_height*scale)
-    elif new_width and new_height:
+    if new_width and new_height:
         if round(new_width/new_height, 2) != aspect_ratio:
             print('Предупреждение: пропорции сторон не соблюдаются!')
-    elif new_width:
-        new_height = int(new_width/aspect_ratio)
-    elif new_height:
-        new_width = int(new_height*aspect_ratio)
+    else:
+        new_width, new_height = get_new_sides(
+            image_width,
+            image_height,
+            aspect_ratio,
+            scale,
+            new_width,
+            new_height)
     new_image = image.resize((new_width, new_height))
     if not path_to_result:
         path_to_result = get_path_to_result(
