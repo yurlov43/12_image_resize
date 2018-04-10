@@ -41,8 +41,7 @@ if __name__ == '__main__':
     new_height = arguments.height
     scale = arguments.scale
     if (new_width or new_height) and scale:
-        parser.error('Указаны одновременно '
-            'стороны изображения и масштаб!')
+        parser.error('Указаны одновременно стороны изображения и масштаб!')
     image = Image.open(path_to_original)
     image_width, image_height = image.size
     aspect_ratio = round(image_width/image_height, 2)
