@@ -19,6 +19,7 @@ Example of script launch on Linux and Windows, Python 3.5:
 ```bash
 $ python image_resize.py filepath -w -H -s -out 
 ```
+```bash
 Required parameters:
 filepath - The path to the image
 Optional parameters:
@@ -26,6 +27,7 @@ Optional parameters:
 -H (--height) - New image height
 -s (--scale) - Image change scale
 -out (--output) - Path to result
+```
 
 The result is stored in the specified path or saved next to the original image, with the width and height of the image added to the file name.
 
